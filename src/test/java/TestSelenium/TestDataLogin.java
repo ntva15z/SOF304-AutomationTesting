@@ -1,6 +1,7 @@
 package TestSelenium;
 
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,11 +14,16 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utils.Excel;
 
+import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 public class TestDataLogin {
     WebDriver webDriver;
-    Workbook workbook = new XSSFWorkbook();
+//    FileInputStream fileInputStream = new FileInputStream(new File("D:\\SOF304\\Ass2-SOF304\\excel/testCaseLogin.xlsx"));
+//    XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
+//    XSSFSheet ass = wb.getSheet("Login");
+//    public TestDataLogin() throws IOException {
+//    }
 
     @BeforeTest
     public void InitTest() {
@@ -59,6 +65,13 @@ public class TestDataLogin {
             webDriver.findElement(By.name("btnLogin")).click();
             Thread.sleep(2000);
             WebElement alert = webDriver.findElement(By.name("msg"));
+//            if(expected.equals(alert.getText())){
+//                Row row = ass.getRow(i);
+//                Cell cell = row.createCell(7);
+//                cell.setCellValue("Pass");
+//                FileOutputStream file = new FileOutputStream("D:\\SOF304\\Ass2-SOF304\\excel/testCaseLogin.xlsx");
+//                wb.write(file);
+//            }
             Assert.assertEquals(expected, alert.getText());
             Thread.sleep(2000);
             webDriver.navigate().refresh();
